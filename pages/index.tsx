@@ -33,19 +33,13 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
           alignItems="center"
           alignSelf="center"
           flexGrow={1}
-          sx={{
-            maxWidth: {
-              xs: "90%",
-              sm: "70%"
-            }
-          }}
         >
           <Header
-            avatar="https://cdn.discordapp.com/attachments/954055017093005393/962537929178247199/funny.jpg"
+            avatar="/img/me.jpg"
             github="https://github.com/greatgitsby"
             linkedin="https://linkedin.com/in/trey-moen"
             email="trey@moen.ai"
-            resume="./resume.pdf"
+            resume="./pdf/resume.pdf"
           />
 
           <Stack
