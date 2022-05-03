@@ -11,23 +11,3 @@ blockquote {
   padding-left: 3em;
   border-left: 0.5em rgb(255, 107, 107) solid;
 }
-
-/* pre {
-  font-family: monospace;
-  clear: both;
-  color: #fff;
-  background: #1b1b1b;
-  padding: 0;
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
-  tab-size: 2;
-  -ms-word-break: normal;
-  word-break: normal;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-  position: relative;
-  line-height: 28px;
-  border-radius: 8px;
-  overflow: hidden;
-} */

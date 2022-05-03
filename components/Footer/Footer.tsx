@@ -9,7 +9,7 @@ const Footer: NextPage<FooterProps> = (props) => {
   return (
     <Box
       component="footer"
-      bgcolor="text.primary"
+      bgcolor="primary.contrastText"
       height="50px"
       width="100%"
       sx={{
@@ -22,9 +22,9 @@ const Footer: NextPage<FooterProps> = (props) => {
     >
         <Typography
           align="center"
-          color="text.secondary"
+          color="white"
         >
-          {"trey <at> moen.ai 🚀 2022"}
+          {`Trey Moen ⸱ ${new Date().getFullYear()}`}
         </Typography>
     </Box>
   );

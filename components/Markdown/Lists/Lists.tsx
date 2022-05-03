@@ -25,7 +25,7 @@ export const ul = ({ children }) => {
   return (
     <List
       sx={{
-        paddingLeft: "3rem",
+        paddingLeft: "2rem",
         listStyleType: "disc"
       }}
     >
@@ -38,7 +38,7 @@ export const ol = ({ children }) => {
   return (
     <List
       sx={{
-        paddingLeft: "3rem",
+        paddingLeft: "2rem",
         listStyleType: "decimal"
       }}
     >

@@ -22,20 +22,12 @@ const Header: NextPage<HeaderProps> = (props) => {
 
   return (
     <Stack
-      flexShrink={0}
       spacing={3}
+      width="100%"
     >
-      <Typography
-        align="center"
-        fontWeight="bold"
-        variant="h3"
-        color="secondary"
-      >
-        Trey Moen
-      </Typography>
-
       <Stack
         direction="row"
+        justifyContent="space-between"
       >
         <Stack
           justifyContent="space-between"
@@ -64,14 +56,9 @@ const Header: NextPage<HeaderProps> = (props) => {
         <Avatar
           src={avatar}
           sx={{
-            width: {
-              xs: 200,
-              sm: 350
-            },
-            height: {
-              xs: 200,
-              sm: 350
-            }
+            flexGrow: 1,
+            maxWidth: 350,
+            height: "auto"
           }}
         />
         <Stack
@@ -95,16 +82,20 @@ const Header: NextPage<HeaderProps> = (props) => {
               <EmailIcon />
             </Fab>
           </Tooltip>
-
         </Stack>
       </Stack>
+
       <Typography
         align="center"
         fontWeight="bold"
-        variant="h6"
-        color="secondary"
+        variant="h2"
+        sx={{
+          background: (theme) => `linear-gradient(90deg, ${theme.palette.primary.contrastText}, ${theme.palette.primary.main})`,
+          backgroundClip: "text",
+          WebkitTextFillColor: "transparent"
+        }}
       >
-        Student for life
+        Trey Moen
       </Typography>
     </Stack>
   );

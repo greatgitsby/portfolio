@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Box } from "@mui/material";
+import { Box, Card } from "@mui/material";
 
 interface BlockQuoteProps {
   children: any;
@@ -7,18 +7,23 @@ interface BlockQuoteProps {
 
 export const blockquote: FC<BlockQuoteProps> = (props) => {
   return (
+    <Card
+      raised
+      sx={{
+        margin: "20px 0px 20px 0px",
+      }}
+    >
     <Box
       component="div"
       sx={{
-        display: "block",
-        borderLeft: "10px #222 solid",
-        paddingLeft: "15px",
-        backgroundColor: "#ccc",
+        borderLeft: (theme) => `8px ${theme.palette.primary.main} solid`,
+        padding: "12px",
+        backgroundColor: "#ddd",
         color: "#444"
       }}
     >
-
       {props.children}
     </Box>
+  </Card>
   );
 };

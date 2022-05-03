@@ -9,23 +9,31 @@ import RemarkFrontmatter from "remark-frontmatter";
 import { Box, Fab, Stack, ThemeProvider, Typography } from "@mui/material";
 import theme from "../../styles/theme";
 import { Footer } from "../../components/Footer";
-import { getPostPaths, getPostMetadata, PostProps } from "../../src/posts";
+import { getPostPaths, getPostProps, PostProps } from "../../src/posts";
 import * as markdownComponents from "../../components/Markdown";
-import { ArrowBack } from "@mui/icons-material";
+import { ArrowBack, CalendarMonth } from "@mui/icons-material";
+import Head from "next/head";
 
 const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Head>
+        <title>{title} ⸱ Trey Moen</title> 
+      </Head>
+
       <Stack
         alignItems="center"
         justifyContent="center"
-        spacing={5}
+        gap={2}
         sx={{
           margin: "auto",
           marginTop: "3rem",
           marginBottom: "3rem",
-          maxWidth: "75%"
+          width: {
+            xs: "85%",
+            md: "65%"
+          }
         }}
       >
         <Box
@@ -38,27 +46,33 @@ const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => 
             <ArrowBack />
           </Fab>
         </Box>
-        <Typography variant="h1" align="center">{title}</Typography>
+        <Typography variant="h2" align="center" fontWeight="bold">{title}</Typography>
+        <Stack direction="row" alignItems="center" gap={1}>
+          <CalendarMonth />
+          <Typography variant="body1" align="center">
+            {created}
+          </Typography>
+        </Stack>
+
         <Box
           alignItems="center"
           justifyContent="center"
-          sx={{
-            maxWidth: "90%"
-          }}
         >
-          <Stack
-            spacing={5}
-          >
+          <Stack gap={2}>
             <Box>
               <ReactMarkdown
                 components={markdownComponents as any}
                 remarkPlugins={[RemarkFrontmatter, RemarkGfm]}
-                rehypePlugins={[RehypeRemoveComments, RehypeSlug, [RehypeAutoLinkHeading, { behavior: "wrap" }], RehypeToc]}
+                rehypePlugins={[
+                  RehypeRemoveComments,
+                  RehypeSlug,
+                  //[RehypeAutoLinkHeading, { behavior: "wrap" }],
+                  //RehypeToc
+                ]}
               >
                 {content}
               </ReactMarkdown>
             </Box>
-
             <Typography fontStyle="italic">
               Updated {updated}
             </Typography>
@@ -72,7 +86,7 @@ const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => 
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
   const slug = context.params?.slug as string;
-  const props = await getPostMetadata(slug);
+  const props = await getPostProps(slug);
 
   return {
     props

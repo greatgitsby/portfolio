@@ -1,8 +1,8 @@
 ---
-title: articles
+title: Articles
 desc: A collection of articles that have influenced my thinking.
-created: 2021-07-14T00:00:00.000Z
-updated: 2022-02-08T00:07:35.401Z
+created: 2021-07-14
+updated: 2022-02-08
 ---
 
 This curated list of articles have informed my experiences as a developer

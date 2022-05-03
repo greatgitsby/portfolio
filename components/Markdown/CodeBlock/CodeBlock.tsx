@@ -29,7 +29,7 @@ export const code: FC<CodeProps> = ({ className, inline = false, children }) => 
       <Box
         component="code"
         sx={{
-          backgroundColor: "#ffeff0",
+          backgroundColor: (theme) => `${theme.palette.secondary.main}40`,
           wordWrap: "break-word",
           boxDecorationBreak: "clone",
           padding: ".1rem .3rem .2rem",

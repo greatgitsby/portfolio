@@ -19,11 +19,11 @@ const BlogCard: FC<BlogCardProps> = (props) => {
       sx={{
         backgroundColor: "primary.main",
         borderRadius: "25px",
-        width: {
-          xs: "90%",
-          sm: "70%",
-          md: "50%"
-        },
+        // width: {
+        //   xs: "90%",
+        //   sm: "70%",
+        //   md: "50%"
+        // },
       }}
     >
       <CardActionArea
@@ -41,13 +41,14 @@ const BlogCard: FC<BlogCardProps> = (props) => {
               whiteSpace="nowrap"
               overflow="hidden"
               textOverflow="ellipsis"
-              maxWidth="60%"
+              color="primary.contrastText"
             >
               {title}
             </Typography>
             <Typography
               variant="subtitle1"
               fontWeight="light"
+              color="primary.contrastText"
             >
               {date}
             </Typography>
@@ -56,6 +57,7 @@ const BlogCard: FC<BlogCardProps> = (props) => {
           <Typography
             variant="body1"
             fontWeight="light"
+            color="primary.contrastText"
           >
             {desc}
           </Typography>

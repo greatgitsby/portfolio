@@ -14,7 +14,7 @@ interface PostFrontmatter {
   created: Date;
 }
 
-export async function getPostMetadata(slug: string): Promise<PostProps> {
+export async function getPostProps(slug: string): Promise<PostProps> {
   const matter = (await import("gray-matter")).default;
   const path = await import("path");
   const fs = await import("fs/promises");
