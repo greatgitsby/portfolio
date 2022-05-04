@@ -3,8 +3,9 @@ import {
   ReactMarkdownProps,
   ReactNode,
 } from "react-markdown/lib/ast-to-react";
-import { Typography } from "@mui/material";
-import { Variant } from "@mui/material/styles/createTypography";
+import Typography from "@mui/material/Typography";
+
+import type { Variant } from "@mui/material/styles/createTypography";
 
 type HeadingComponentWithId = (
   props: 

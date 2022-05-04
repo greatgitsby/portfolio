@@ -1,5 +1,11 @@
-import { Card, CardContent, CardActionArea, Stack, Typography } from "@mui/material";
-import { FC } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActionArea from "@mui/material/CardActionArea";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+import type { FC } from "react";
+import Link from "next/link";
 
 interface BlogCardProps {
   title: string;
@@ -19,51 +25,47 @@ const BlogCard: FC<BlogCardProps> = (props) => {
       sx={{
         backgroundColor: "primary.main",
         borderRadius: "25px",
-        // width: {
-        //   xs: "90%",
-        //   sm: "70%",
-        //   md: "50%"
-        // },
       }}
     >
-      <CardActionArea
-        href={url}
-      >
-        <CardContent>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="flex-end"
-          >
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              whiteSpace="nowrap"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              color="primary.contrastText"
+      <Link href={url} passHref>
+        <CardActionArea
+        >
+          <CardContent>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="flex-end"
             >
-              {title}
-            </Typography>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                color="primary.contrastText"
+              >
+                {title}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                fontWeight="light"
+                color="primary.contrastText"
+              >
+                {date}
+              </Typography>
+            </Stack>
+
             <Typography
-              variant="subtitle1"
+              variant="body1"
               fontWeight="light"
               color="primary.contrastText"
             >
-              {date}
+              {desc}
             </Typography>
-          </Stack>
+          </CardContent>
 
-          <Typography
-            variant="body1"
-            fontWeight="light"
-            color="primary.contrastText"
-          >
-            {desc}
-          </Typography>
-        </CardContent>
-
-      </CardActionArea>
+        </CardActionArea>
+      </Link>
     </Card>
   );
 };

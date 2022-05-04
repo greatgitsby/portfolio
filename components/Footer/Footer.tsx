@@ -1,11 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { NextPage } from "next";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-interface FooterProps {
+import type { FC } from "react";
 
-};
-
-const Footer: NextPage<FooterProps> = (props) => {
+const Footer: FC = () => {
   return (
     <Box
       component="footer"

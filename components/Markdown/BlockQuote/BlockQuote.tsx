@@ -1,5 +1,7 @@
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+
 import { FC } from "react";
-import { Box, Card } from "@mui/material";
 
 interface BlockQuoteProps {
   children: any;

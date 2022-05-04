@@ -1,4 +1,6 @@
-import { Box, Card, Container, Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 
 export const nav = ({ children }) => {
   const shouldRenderTable = children[0].props.node.children.length > 0;

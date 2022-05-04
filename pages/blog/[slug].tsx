@@ -1,27 +1,29 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import ReactMarkdown from "react-markdown";
-import RemarkGfm from "remark-gfm";
-import RehypeToc from "rehype-toc";
-import RehypeSlug from "rehype-slug";
-import RehypeRemoveComments from "rehype-remove-comments";
-import RehypeAutoLinkHeading from 'rehype-autolink-headings'
-import RemarkFrontmatter from "remark-frontmatter";
-import { Box, Fab, Stack, ThemeProvider, Typography } from "@mui/material";
-import theme from "../../styles/theme";
-import { Footer } from "../../components/Footer";
-import { getPostPaths, getPostProps, PostProps } from "../../src/posts";
-import * as markdownComponents from "../../components/Markdown";
-import { ArrowBack, CalendarMonth } from "@mui/icons-material";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
 import Head from "next/head";
 
-const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => {
+import Box from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import CalendarMonth from "@mui/icons-material/CalendarMonth";
+
+import ReactMarkdown from "react-markdown";
+import RemarkGfm from "remark-gfm";
+import RehypeSlug from "rehype-slug";
+import RehypeRemoveComments from "rehype-remove-comments";
+import RemarkFrontmatter from "remark-frontmatter";
+
+import { getPostContent, getPostPaths, getPostProps, PostProps } from "../../src/posts";
+import { Footer } from "../../components/Footer";
+import * as markdownComponents from "../../components/Markdown";
+import Link from "next/link";
+
+const BlogPage: NextPage<PostProps> = ({ created, content, title, updated }) => {
+  const pageContent = content || "";
 
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>{title} ⸱ Trey Moen</title> 
-      </Head>
-
+    <>
       <Stack
         alignItems="center"
         justifyContent="center"
@@ -36,15 +38,18 @@ const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => 
           }
         }}
       >
+        <Head>
+          <title>{title} ⸱ Trey Moen</title>
+        </Head>
+
         <Box
           width="100%"
         >
-          <Fab
-            color="secondary"
-            href="/"
-          >
-            <ArrowBack />
-          </Fab>
+          <Link href="/" passHref>
+            <Fab color="secondary">
+              <ArrowBack />
+            </Fab>
+          </Link>
         </Box>
         <Typography variant="h2" align="center" fontWeight="bold">{title}</Typography>
         <Stack direction="row" alignItems="center" gap={1}>
@@ -70,7 +75,7 @@ const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => 
                   //RehypeToc
                 ]}
               >
-                {content}
+                {pageContent}
               </ReactMarkdown>
             </Box>
             <Typography fontStyle="italic">
@@ -80,17 +85,17 @@ const BlogPage: NextPage<PostProps> = ({ content, created, title, updated }) => 
         </Box>
       </Stack>
       <Footer />
-    </ThemeProvider>
+    </>
   );
 };
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
   const slug = context.params?.slug as string;
   const props = await getPostProps(slug);
+  const content = await getPostContent(props.filePath);
+  props.content = content;
 
-  return {
-    props
-  };
+  return { props };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -1,9 +1,15 @@
-import { Avatar, Badge, Box, Fab, Stack, Tooltip, Typography } from "@mui/material";
-import { NextPage } from "next";
+import Avatar from "@mui/material/Avatar";
+import Fab from "@mui/material/Fab";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+
 import ArticleIcon from '@mui/icons-material/Article';
 import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+import type { FC } from "react";
 
 interface HeaderProps {
   avatar: string;
@@ -13,7 +19,7 @@ interface HeaderProps {
   resume: string;
 };
 
-const Header: NextPage<HeaderProps> = (props) => {
+const Header: FC<HeaderProps> = (props) => {
   const avatar = props.avatar;
   const email = props.email;
   const github = props.github;

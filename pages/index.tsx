@@ -1,10 +1,10 @@
-import { Box, Stack, ThemeProvider } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import type { GetStaticProps, NextPage } from 'next';
 import { BlogCard } from '../components/BlogCard';
 import { Footer } from '../components/Footer';
 import { Header } from "../components/Header";
 import { getPostProps, getPostPaths, PostProps } from '../src/posts';
-import theme from "../styles/theme";
 import Head from "next/head";
 
 interface HomeProps {
@@ -13,10 +13,6 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ posts }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>Trey Moen</title>
-      </Head>
       <Box
         sx={{
           display: "flex",
@@ -24,6 +20,10 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
           minHeight: "100vh"
         }}
       >
+        <Head>
+          <title>Trey Moen</title>
+        </Head>
+
         <Stack
           component="main"
           marginTop="25px" // TODO maybe remove?
@@ -33,6 +33,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
           alignItems="center"
           alignSelf="center"
           flexGrow={1}
+          maxWidth="85%"
         >
           <Header
             avatar="/img/me.jpg"
@@ -60,7 +61,6 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
         </Stack>
         <Footer />
       </Box>
-    </ThemeProvider>
   );
 };
 

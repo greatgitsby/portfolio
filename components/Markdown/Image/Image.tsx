@@ -1,5 +1,10 @@
-import { Box, Card, CardActionArea, CardMedia, Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import Zoom from "react-medium-image-zoom";
+
 import "react-medium-image-zoom/dist/styles.css";
 
 export const img = ({ src, alt }) => {

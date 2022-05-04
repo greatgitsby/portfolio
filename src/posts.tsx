@@ -1,5 +1,6 @@
 export interface PostProps {
-  content: string;
+  filePath: string;
+  content?: string;
   title: string;
   desc: string;
   updated: string;
@@ -14,6 +15,13 @@ interface PostFrontmatter {
   created: Date;
 }
 
+export async function getPostContent(filePath: string): Promise<string> {
+  const fs = await import("fs/promises");
+  const markdownFile = await fs.readFile(filePath);
+  const content = markdownFile.toString();
+  return content;
+}
+
 export async function getPostProps(slug: string): Promise<PostProps> {
   const matter = (await import("gray-matter")).default;
   const path = await import("path");
@@ -25,7 +33,7 @@ export async function getPostProps(slug: string): Promise<PostProps> {
   const metadata = matter(content).data as PostFrontmatter;
 
   return {
-    content,
+    filePath: markdownFilePath,
     desc: metadata.desc,
     slug: "/blog/" + slug,
     title: metadata.title,
