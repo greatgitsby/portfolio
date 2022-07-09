@@ -2,7 +2,7 @@
 title: Projects
 desc: A few of the projects I have worked on.
 created: 2021-07-13
-updated: 2021-11-11
+updated: 2022-07-08
 ---
 
 The following is a collection of projects I have worked on in the past for both
@@ -32,14 +32,30 @@ Source code is [here](https://github.com/greatgitsby/wedding).
 
 # University
 
-*Description coming soon*
+Over my time at university, I had the privilege of building a number
+of interesting projects:
 
 ## Bot or not: modeling HTTP traffic to classify humans and bots
-*Coming soon*, paper located [here](/pdf/botornot.pdf)
+[Data Collection Site](https://ml.moen.ai)
 
-## VineTech
+[Paper](/pdf/botornot.pdf)
 
-*Coming soon*
+[Source Code](https://github.com/greatgitsby/bot-detect)
+
+For my
+[Machine Learning and Computational Modeling](http://jorr.cs.georgefox.edu/courses/csis441-machine-learning/),
+course, I chose
+to create a bot detection middleware for Python Flask applications
+(the goal of which was to generalize into an API or SaaS).
+It takes some metadata about an arbitrary request and
+attaches it to an identifiable 'session' (collection of requests from a 'user'),
+and gauges whether or not the session is associated with a bot or a real human.
+
+## Senior Design Projects
+
+During my senior year, I had a required course called Senior Design,
+with its goal to demonstrate the knowledge gained over the course of
+one's time at George Fox. Some of the projects we worked on are discussed below:
 
 ### VineViewer, an image quality and integrity checker
 

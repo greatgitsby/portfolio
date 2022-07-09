@@ -9,44 +9,41 @@ import "react-medium-image-zoom/dist/styles.css";
 
 export const img = ({ src, alt }) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        "button": {
-          outline: "0 !important"
-        }
+    <Zoom
+      wrapStyle={{
+        width: '100%'
       }}
     >
-      <Zoom>
-        <Stack
-          spacing={2}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "15px 0px 15px 0px",
-            textAlign: "center",
-          }}
+      <Stack
+        spacing={2}
+        sx={{
+          margin: "15px auto 15px auto",
+          width: {
+            xs: "90%",
+            sm: "70%",
+            md: "50%"
+          },
+          textAlign: "center",
+        }}
+      >
+        <Card
+          raised
         >
-          <Card
-            raised
-          >
-            <CardMedia
-              component="img"
-              image={src}
-              alt={alt}
-              width={"100%"}
-            />
-          </Card>
+          <CardMedia
+            component="img"
+            image={src}
+            alt={alt}
+            width={"100%"}
+          />
+        </Card>
 
-          <Typography
-            variant="body2"
-            fontStyle="italic"
-          >
-            {alt}
-          </Typography>
-        </Stack>
-      </Zoom>
-    </Box>
+        <Typography
+          variant="body2"
+          fontStyle="italic"
+        >
+          {alt}
+        </Typography>
+      </Stack>
+    </Zoom>
   );
 };

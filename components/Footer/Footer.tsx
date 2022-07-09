@@ -14,8 +14,6 @@ const Footer: FC = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        borderTopLeftRadius: "25px",
-        borderTopRightRadius: "25px",
       }}
     >
         <Typography
