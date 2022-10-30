@@ -45,6 +45,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
 
           <Stack
             gap={2} 
+            width="100%"
           >
             {posts.map((p, i) => (
               <BlogCard

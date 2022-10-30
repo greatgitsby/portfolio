@@ -11,7 +11,7 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color={theme.palette.primary.main} />
         <meta name="msapplication-TileColor" content="#" />
-        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="theme-color" content="#fff" />
         <meta property="og:title" content="Trey Moen" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://moen.ai" />

@@ -1,4 +1,7 @@
 import type { AppProps } from 'next/app';
+
+import { Analytics } from '@vercel/analytics/react';
+
 import ThemeProvider from '@mui/system/ThemeProvider';
 
 import "../styles/global.css";
@@ -8,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Component {...pageProps} />
+      <Analytics />
     </ThemeProvider>
   );
 }

@@ -11,7 +11,8 @@ export const img = ({ src, alt }) => {
   return (
     <Zoom
       wrapStyle={{
-        width: '100%'
+        width: '100%',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       }}
     >
       <Stack
@@ -24,6 +25,7 @@ export const img = ({ src, alt }) => {
             md: "50%"
           },
           textAlign: "center",
+          WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         }}
       >
         <Card

@@ -23,20 +23,23 @@ const BlogPage: NextPage<PostProps> = ({ created, content, title, updated }) => 
   const pageContent = content || "";
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh"
+      }}
+    >
       <Stack
+        component="main"
+        marginTop="25px" // TODO maybe remove?
+        direction="column"
+        spacing={3}
+        marginBottom={3}
         alignItems="center"
-        justifyContent="center"
-        gap={2}
-        sx={{
-          margin: "auto",
-          marginTop: "3rem",
-          marginBottom: "3rem",
-          width: {
-            xs: "85%",
-            md: "65%"
-          }
-        }}
+        alignSelf="center"
+        flexGrow={1}
+        maxWidth="85%"
       >
         <Head>
           <title>{title} ⸱ Trey Moen</title>
@@ -85,7 +88,7 @@ const BlogPage: NextPage<PostProps> = ({ created, content, title, updated }) => 
         </Box>
       </Stack>
       <Footer />
-    </>
+    </Box>
   );
 };
 

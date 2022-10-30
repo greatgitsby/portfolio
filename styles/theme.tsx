@@ -4,6 +4,10 @@ import { ThemeOptions } from '@mui/material/styles';
 export const themeOptions: ThemeOptions = {
   palette: {
     mode: 'light',
+    background: {
+      default: '#fff',
+      paper: '#fff'
+    },
     primary: {
       main: '#98C1D9',
       contrastText: "#3D5A80"
