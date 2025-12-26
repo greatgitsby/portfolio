@@ -1,45 +1,23 @@
 export interface PostProps {
-  filePath: string;
-  content?: string;
+  slug: string;
   title: string;
   desc: string;
   updated: string;
   created: string;
-  slug: string;
-}
-
-interface PostFrontmatter {
-  title: string;
-  desc: string;
-  updated: Date;
-  created: Date;
-}
-
-export async function getPostContent(filePath: string): Promise<string> {
-  const fs = await import("fs/promises");
-  const markdownFile = await fs.readFile(filePath);
-  const content = markdownFile.toString();
-  return content;
 }
 
 export async function getPostProps(slug: string): Promise<PostProps> {
-  const matter = (await import("gray-matter")).default;
-  const path = await import("path");
-  const fs = await import("fs/promises");
-
-  const markdownFilePath = path.join(process.cwd(), "content", slug + ".md");
-  const markdownFile = await fs.readFile(markdownFilePath);
-  const content = markdownFile.toString();
-  const metadata = matter(content).data as PostFrontmatter;
+  // Dynamically import the MDX file to get its metadata
+  const mdxModule = await import(`../content/${slug}.mdx`)
+  const metadata = mdxModule.metadata
 
   return {
-    filePath: markdownFilePath,
-    desc: metadata.desc,
-    slug: "/blog/" + slug,
+    slug: slug,
     title: metadata.title,
-    created: metadata.created.toLocaleDateString(),
-    updated: metadata.updated.toLocaleDateString()
-  };
+    desc: metadata.desc,
+    created: metadata.created,
+    updated: metadata.updated
+  }
 }
 
 export async function getPostPaths(): Promise<string[]> {
@@ -47,7 +25,10 @@ export async function getPostPaths(): Promise<string[]> {
   const path = await import("path");
   const contentDir = path.join(process.cwd(), "content");
 
-  return (await fs.readdir(contentDir))
-    .map((p) => p.split(".").slice(0, 1))
-    .flat();
+  // Get all .mdx files (changed from .md)
+  const files = await fs.readdir(contentDir)
+
+  return files
+    .filter(file => file.endsWith('.mdx'))
+    .map((file) => file.replace('.mdx', ''))
 }
