@@ -1,67 +1,57 @@
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import type { GetStaticProps, NextPage } from 'next';
-import { BlogCard } from '../components/BlogCard';
+import Head from 'next/head';
+import Link from 'next/link';
+import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { Header } from "../components/Header";
 import { getPostProps, getPostPaths, PostProps } from '../src/posts';
-import Head from "next/head";
 
 interface HomeProps {
-  posts: PostProps[]
-};
+  posts: PostProps[];
+}
 
 const Home: NextPage<HomeProps> = ({ posts }) => {
   return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh"
-        }}
-      >
-        <Head>
-          <title>Trey Moen</title>
-        </Head>
+    <div className="min-h-screen flex flex-col bg-warm-white">
+      <Head>
+        <title>Trey Moen</title>
+      </Head>
 
-        <Stack
-          component="main"
-          marginTop="25px" // TODO maybe remove?
-          direction="column"
-          spacing={3}
-          marginBottom={3}
-          alignItems="center"
-          alignSelf="center"
-          flexGrow={1}
-          maxWidth="85%"
-        >
-          <Header
-            avatar="/img/me.jpg"
-            github="https://github.com/greatgitsby"
-            linkedin="https://linkedin.com/in/trey-moen"
-            email="trey@moen.ai"
-            resume="./pdf/resume.pdf"
-          />
+      <main className="flex-grow max-w-3xl w-full mx-auto px-12 md:px-8 py-8 md:py-12">
+        {/* Header with avatar and social links */}
+        <Header />
 
-          <Stack
-            gap={2} 
-            width="100%"
-          >
-            {posts.map((p, i) => (
-              <BlogCard
-                key={i}
-                title={p.title}
-                date={p.created}
-                desc={p.desc}
-                url={p.slug}
-              />
-            ))}
-          </Stack>
+        {/* Divider */}
+        <hr className="border-border-gray mb-12" />
 
+        {/* Blog posts list */}
+        <div className="space-y-8">
+          {posts.map((post, index) => (
+            <article
+              key={post.slug}
+              className={`animate-fade-in-up stagger-${Math.min(index + 1, 5)}`}
+            >
+              {/* Title */}
+              <h3 className="font-display text-2xl md:text-3xl mb-2">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="text-rich-black hover:text-terracotta transition-colors"
+                >
+                  {post.title}
+                </Link>
+              </h3>
 
-        </Stack>
-        <Footer />
-      </Box>
+              {/* Description */}
+              <p className="font-body text-base md:text-lg text-text-muted">
+                {post.desc}
+              </p>
+            </article>
+          ))}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 };
 
@@ -74,14 +64,14 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     posts.push(post);
   }
 
-  // Sort posts youngest to oldest
+  // Sort posts newest to oldest
   posts.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
 
-  return Promise.resolve({
+  return {
     props: {
-      posts
-    }
-  });
+      posts,
+    },
+  };
 };
 
 export default Home;
