@@ -4,6 +4,12 @@ import createMDX from '@next/mdx'
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  // Enable static export for Next.js 13+
+  output: 'export',
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
+  },
   // Configure pageExtensions to include MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 }
